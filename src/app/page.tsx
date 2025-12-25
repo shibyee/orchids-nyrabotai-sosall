@@ -1025,8 +1025,8 @@ export default function ShowcasePage() {
                           </div>
                           {showBanner && (
                             <div className="bg-[#1C1C1E] rounded-2xl p-4 mb-4 flex items-center gap-4 relative border border-white/5">
-                              <div className="w-11 h-11 bg-zinc-800 rounded-lg flex items-center justify-center overflow-hidden">
-                                <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" className="w-[34px] h-[34px] object-contain" alt="Terminal" />
+                              <div className="w-[48px] h-11 bg-zinc-800 rounded-lg flex items-center justify-center overflow-hidden shrink-0">
+                                <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" className="w-[42px] h-[34px] object-contain" alt="Terminal" />
                               </div>
                               <p className="text-[14px] font-bold leading-snug pr-4">{data.banner}</p>
                               <X onClick={() => setShowBanner(false)} className="absolute top-2 right-2 text-zinc-500 w-4 h-4 cursor-pointer" />
