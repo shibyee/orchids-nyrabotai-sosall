@@ -938,8 +938,17 @@ export default function ShowcasePage() {
                         </header>
                         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
                           {[
-                            { label: "Address", key: "addr" }, { label: "Total Balance", key: "bal" },
-                            { label: "Token Amount", key: "tokAmt" }, { label: "Account Name", key: "homeName" }
+                            { label: "Address", key: "addr" }, 
+                            { label: "Account Name", key: "homeName" },
+                            { label: "Badge Count", key: "badgeCount" },
+                            { label: "Total Balance", key: "bal" },
+                            { label: "Change $", key: "delta" },
+                            { label: "Change %", key: "pct" },
+                            { label: "Token Name", key: "tokName" },
+                            { label: "Token Amount", key: "tokAmt" },
+                            { label: "Token USD", key: "tokUsd" },
+                            { label: "Token Change", key: "tokChg" },
+                            { label: "Banner Text", key: "banner" }
                           ].map(f => (
                             <div key={f.key} className="space-y-1.5">
                               <label className="text-[10px] font-bold text-zinc-500 uppercase">{f.label}</label>
