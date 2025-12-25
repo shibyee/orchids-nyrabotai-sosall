@@ -106,29 +106,9 @@ const FILES = {
 <body>
     <div id="main-layout" style="flex:1;display:flex;flex-direction:column">
         <div id="tab-home" class="tab-content active">
-            <div class="home-header">
-                <div class="account-badge" id="badge-account">
-                    <div class="badge-circle" id="disp-badgeCount">3</div>
-                    <span id="disp-homeName">111</span>
-                </div>
-            </div>
-            <div class="bal-section">
-                <div class="total-bal">$<span id="disp-bal">1.22</span></div>
-            </div>
-            <div class="actions-grid">
-                <div class="action-btn">Receive</div>
-                <div class="action-btn">Send</div>
-                <div class="action-btn">Swap</div>
-                <div class="action-btn">Buy</div>
-            </div>
+            <!-- Home content synced with popup.js logic -->
         </div>
-        <nav id="bottom-nav">
-            <div class="nav-item active" data-tab="tab-home">H</div>
-            <div class="nav-item" data-tab="tab-grid">G</div>
-            <div class="nav-item" data-tab="tab-swap">S</div>
-            <div class="nav-item" data-tab="tab-activity">A</div>
-            <div class="nav-item" data-tab="tab-search">Q</div>
-        </nav>
+        <nav id="bottom-nav"><!-- Nav items --></nav>
     </div>
     <script src="popup.js"></script>
 </body>
@@ -152,15 +132,20 @@ window.onload = () => {
 
 export default function ShowcasePage() {
   const [data, setData] = useState(DEFAULTS);
-  const [screen, setScreen] = useState("s3"); // s1, s-import-pk, s-editor, s3 (main)
+  const [screen, setScreen] = useState("s3"); // Overlay screens: s1, s2, editor, s3(home-base)
   const [activeTab, setActiveTab] = useState("home");
-  const [view, setView] = useState("preview"); // preview | instructions | code
+  const [view, setView] = useState("preview");
   const [privateKey, setPrivateKey] = useState("");
   const [showBanner, setShowBanner] = useState(true);
 
   const handleSave = () => {
     setScreen("s3");
-    toast.success("Mockup updated!");
+    toast.success("Mock data updated!");
+  };
+
+  const copyAddr = () => {
+    navigator.clipboard.writeText(data.addr);
+    toast.info("Address copied to clipboard");
   };
 
   return (
@@ -173,14 +158,14 @@ export default function ShowcasePage() {
             </div>
             <div>
               <h1 className="font-bold text-lg tracking-tight">Phantom Mockup</h1>
-              <p className="text-xs text-zinc-500 font-medium">Extension Showcase & Builder</p>
+              <p className="text-xs text-zinc-500 font-medium">Extension Preview</p>
             </div>
           </div>
           <Tabs value={view} onValueChange={(v) => setView(v as any)} className="w-auto">
             <TabsList className="bg-zinc-800/50 border border-zinc-700">
               <TabsTrigger value="preview" className="data-[state=active]:bg-zinc-700"><Eye className="w-4 h-4 mr-2" /> Preview</TabsTrigger>
               <TabsTrigger value="instructions" className="data-[state=active]:bg-zinc-700"><Settings className="w-4 h-4 mr-2" /> Install</TabsTrigger>
-              <TabsTrigger value="code" className="data-[state=active]:bg-zinc-700"><Code2 className="w-4 h-4 mr-2" /> Source</TabsTrigger>
+              <TabsTrigger value="code" className="data-[state=active]:bg-zinc-700"><Code2 className="w-4 h-4 mr-2" /> Code</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
@@ -204,8 +189,8 @@ export default function ShowcasePage() {
                         </header>
                         <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2.5">
                           {[
-                            { title: "Import Recovery Phrase", sub: "Edit mock data values", icon: <File className="w-5 h-5" />, onClick: () => setScreen("s-editor") },
-                            { title: "Import Private Key", sub: "Add account to mockup", icon: <ArrowDownToLine className="w-5 h-5" />, onClick: () => setScreen("s-import-pk") },
+                            { title: "Import Recovery Phrase", sub: "Edit mock data values", icon: <File className="w-5 h-5" />, onClick: () => setScreen("editor") },
+                            { title: "Import Private Key", sub: "Add account to mockup", icon: <ArrowDownToLine className="w-5 h-5" />, onClick: () => setScreen("s2") },
                           ].map((item, i) => (
                             <button key={i} onClick={item.onClick} className="w-full bg-[#1C1C1E] p-4 rounded-[22px] flex items-center gap-4 text-left border border-white/5 active:scale-95 transition-all">
                               <div className="w-11 h-11 rounded-full bg-[#2C2C2E] flex items-center justify-center shrink-0">{item.icon}</div>
@@ -217,7 +202,7 @@ export default function ShowcasePage() {
                       </motion.div>
                     )}
 
-                    {screen === "s-import-pk" && (
+                    {screen === "s2" && (
                       <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25 }} className="absolute inset-0 bg-[#0F0F0F] z-50 flex flex-col">
                         <header className="h-14 flex items-center justify-between px-4">
                           <button onClick={() => setScreen("s1")} className="p-2 text-zinc-100"><ArrowLeft className="w-6 h-6" /></button>
@@ -228,7 +213,7 @@ export default function ShowcasePage() {
                            <div className="flex flex-col items-center gap-4">
                              <div className="w-20 h-20 bg-[#252528] rounded-full flex items-center justify-center text-3xl font-bold border border-white/5">P</div>
                              <div className="w-full space-y-2.5">
-                               <div className="bg-[#1C1C1E] h-12 rounded-xl px-4 flex items-center justify-between border border-white/5"><span className="font-bold">Solana</span><ChevronDown className="w-4 h-4 text-zinc-500" /></div>
+                               <div className="bg-[#1C1C1E] h-12 rounded-xl px-4 flex items-center justify-between border border-white/5"><span className="font-bold">{data.chain}</span><ChevronDown className="w-4 h-4 text-zinc-500" /></div>
                                <input value={data.name} onChange={e => setData({...data, name: e.target.value})} className="w-full bg-[#1C1C1E] h-12 rounded-xl px-4 border border-white/5 font-bold" placeholder="Name" />
                                <textarea value={privateKey} onChange={e => setPrivateKey(e.target.value)} className="w-full bg-[#1C1C1E] p-4 rounded-xl border border-white/5 h-28 font-mono text-sm" placeholder="Private key" />
                              </div>
@@ -238,7 +223,7 @@ export default function ShowcasePage() {
                       </motion.div>
                     )}
 
-                    {screen === "s-editor" && (
+                    {screen === "editor" && (
                       <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25 }} className="absolute inset-0 bg-[#0F0F0F] z-50 flex flex-col">
                         <header className="h-14 flex items-center justify-between px-4">
                           <button onClick={() => setScreen("s1")} className="p-2 text-zinc-100"><ArrowLeft className="w-6 h-6" /></button>
@@ -247,12 +232,12 @@ export default function ShowcasePage() {
                         </header>
                         <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
                           {[
-                            { label: "Account Address", key: "addr" }, { label: "Total Balance", key: "bal" },
+                            { label: "Address", key: "addr" }, { label: "Total Balance", key: "bal" },
                             { label: "Token Amount", key: "tokAmt" }, { label: "Account Name", key: "homeName" }
                           ].map(f => (
                             <div key={f.key} className="space-y-1.5">
-                              <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">{f.label}</label>
-                              <input value={(data as any)[f.key]} onChange={e => setData({...data, [f.key]: e.target.value})} className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-indigo-500 transition-colors" />
+                              <label className="text-[10px] font-bold text-zinc-500 uppercase">{f.label}</label>
+                              <input value={(data as any)[f.key]} onChange={e => setData({...data, [f.key]: e.target.value})} className="w-full bg-black border border-zinc-800 rounded-xl px-4 py-3 font-mono text-sm" />
                             </div>
                           ))}
                         </div>
@@ -261,19 +246,18 @@ export default function ShowcasePage() {
                     )}
                   </AnimatePresence>
 
-                  {/* MAIN CONTENT AREA with Tabs */}
+                  {/* BASE TABS */}
                   <div className="flex-1 flex flex-col">
                     <div className="flex-1 overflow-y-auto">
                       {activeTab === "home" && (
                         <div className="p-4 flex flex-col">
                           <header className="h-12 flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2 cursor-pointer" onClick={() => setScreen("s1")}>
-                              <div className="w-8 h-8 bg-[#2A2A2A] rounded-full flex items-center justify-center font-bold text-sm tracking-normal">{data.badgeCount}</div>
-                              <span className="font-bold text-[17px] tracking-normal">{data.homeName}</span><ChevronDown className="w-4 h-4 text-zinc-500" />
+                              <div className="w-8 h-8 bg-[#2A2A2A] rounded-full flex items-center justify-center font-bold text-sm">{data.badgeCount}</div>
+                              <span className="font-bold text-[17px]">{data.homeName}</span><ChevronDown className="w-4 h-4 text-zinc-500" />
                             </div>
                             <div className="flex items-center gap-4 text-zinc-500"><Search className="w-6 h-6" /><Maximize2 className="w-6 h-6" /></div>
                           </header>
-
                           <div className="flex flex-col items-center mb-8">
                             <div className="text-[48px] font-extrabold tracking-tighter mb-1">${data.bal}</div>
                             <div className="flex items-center gap-2 font-bold text-[17px]">
@@ -281,24 +265,21 @@ export default function ShowcasePage() {
                               <Badge className={`rounded-lg px-2 py-0.5 border-none font-bold text-[13px] ${data.pct.startsWith('-') ? "bg-red-500/10 text-red-400" : "bg-green-500/10 text-green-400"}`}>{data.pct}%</Badge>
                             </div>
                           </div>
-
                           <div className="grid grid-cols-4 gap-3 mb-8">
-                            {[ {i:<QrCode/>,l:'Receive'}, {i:<Send/>,l:'Send'}, {i:<Repeat/>,l:'Swap'}, {i:<DollarSign/>,l:'Buy'} ].map((a, i) => (
-                              <div key={i} className="bg-[#1C1C1E] aspect-square rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-[#252528] active:scale-90 transition-transform">
+                            {[{i:<QrCode/>,l:'Receive'}, {i:<Send/>,l:'Send'}, {i:<Repeat/>,l:'Swap'}, {i:<DollarSign/>,l:'Buy'}].map((a, i) => (
+                              <div key={i} className="bg-[#1C1C1E] aspect-square rounded-2xl flex flex-col items-center justify-center gap-2 cursor-pointer active:scale-90 transition-transform">
                                 <div className="text-[#AB9FF2]">{a.i}</div><span className="text-[12px] font-bold text-zinc-400">{a.l}</span>
                               </div>
                             ))}
                           </div>
-
                           {showBanner && (
                             <div className="bg-[#1C1C1E] rounded-2xl p-4 mb-4 flex items-center gap-4 relative border border-white/5">
-                              <div className="w-11 h-11 bg-zinc-800 rounded-lg flex items-center justify-center text-green-400"><Zap className="w-6 h-6"/></div>
+                              <div className="w-11 h-11 bg-zinc-800 rounded-lg flex items-center justify-center text-green-400"><MonitorIcon className="w-6 h-6"/></div>
                               <p className="text-[14px] font-bold leading-snug pr-4">{data.banner}</p>
                               <X onClick={() => setShowBanner(false)} className="absolute top-2 right-2 text-zinc-500 w-4 h-4 cursor-pointer" />
                             </div>
                           )}
-
-                          <div className="bg-[#1C1C1E] rounded-[20px] p-4 flex items-center justify-between border border-white/5 hover:bg-[#252528] transition-colors cursor-pointer">
+                          <div className="bg-[#1C1C1E] rounded-[20px] p-4 flex items-center justify-between border border-white/5 active:bg-[#252528] transition-colors cursor-pointer" onClick={copyAddr}>
                             <div className="flex items-center gap-3">
                               <div className="w-11 h-11 rounded-full bg-black flex items-center justify-center text-green-400 border border-white/5"><Zap className="w-6 h-6" /></div>
                               <div className="flex flex-col"><span className="font-bold text-[17px]">{data.tokName}</span><span className="text-[13.5px] text-zinc-500 font-bold">{data.tokAmt}</span></div>
@@ -309,7 +290,6 @@ export default function ShowcasePage() {
                       )}
                       {activeTab !== "home" && <div className="flex-1 flex items-center justify-center text-zinc-500 font-bold text-sm">No data available in this mock section</div>}
                     </div>
-
                     <nav className="h-16 bg-[#0F0F0F] border-t border-white/5 flex items-center justify-around">
                       {[
                         { id: "home", icon: <Home className={activeTab === "home" ? "fill-current" : ""} /> },
@@ -326,7 +306,6 @@ export default function ShowcasePage() {
                   </div>
                 </div>
               </div>
-
               <div className="max-w-md space-y-6">
                 <Card className="bg-zinc-900 border-zinc-800">
                   <CardHeader><CardTitle className="text-xl text-indigo-300 flex items-center gap-2"><Zap className="w-5 h-5" /> Mockup Tools</CardTitle></CardHeader>
@@ -377,5 +356,11 @@ export default function ShowcasePage() {
       </main>
       <footer className="py-12 text-center text-zinc-600 text-xs font-medium">Built with ❤️ for Orchid Developers</footer>
     </div>
+  );
+}
+
+function MonitorIcon(props: any) {
+  return (
+    <svg {...props} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" /></svg>
   );
 }
