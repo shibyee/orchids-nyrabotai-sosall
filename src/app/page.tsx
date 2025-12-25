@@ -81,382 +81,71 @@ const FILES = {
             --down-color: #FF4D4D;
             --input-bg: #0A0A0A;
         }
-        * { 
-            box-sizing: border-box; 
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 375px;
-            height: 600px;
-            background-color: var(--bg-color);
-            color: white;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-        }
+        * { box-sizing: border-box; }
         body {
-            display: flex;
-            flex-direction: column;
-            position: relative;
+            margin: 0; padding: 0;
+            width: 375px; height: 600px;
+            background-color: var(--bg-color); color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            overflow: hidden; display: flex; flex-direction: column;
         }
-        .screen {
-            position: absolute;
-            inset: 0;
-            display: none;
-            flex-direction: column;
-            background: var(--bg-color);
-            z-index: 10;
-        }
+        .screen { position: absolute; inset: 0; display: none; flex-direction: column; background: var(--bg-color); z-index: 10; }
         .screen.active { display: flex; }
-        
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .tab-content {
-            flex: 1;
-            display: none;
-            flex-direction: column;
-            overflow-y: auto;
-        }
+        .tab-content { flex: 1; display: none; flex-direction: column; overflow-y: auto; }
         .tab-content.active { display: flex; }
-
-        /* Header */
-        header {
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-            shrink: 0;
-        }
-        .header-title { font-weight: bold; font-size: 19px; }
-
-        /* S1: Add Account */
-        .list-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 8px 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .list-item {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            border: 1px solid rgba(255,255,255,0.03);
-            cursor: pointer;
-            text-align: left;
-            width: 100%;
-            color: white;
-            transition: background 0.2s;
-        }
-        .list-item:active { transform: scale(0.98); background: #252528; }
-        .item-icon {
-            width: 42px;
-            height: 42px;
-            background: #2C2C2E;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            shrink: 0;
-            color: var(--text-zinc-400);
-        }
-        .item-text h4 { margin: 0; font-size: 16px; font-weight: bold; }
-        .item-text p { margin: 2px 0 0; font-size: 13px; color: var(--text-zinc-500); }
-
-        .btn-close-large {
-            margin: 16px;
-            height: 54px;
-            background: #1C1C1E;
-            color: white;
-            border: none;
-            border-radius: 24px;
-            font-weight: bold;
-            font-size: 17px;
-            cursor: pointer;
-        }
-
-        /* Tab 1: Home */
-        .home-header { padding: 16px 16px 8px; display: flex; justify-content: space-between; align-items: center; }
-        .account-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            padding: 6px 10px;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.03);
-            transition: background 0.2s;
-        }
-        .account-badge:hover { background: rgba(255,255,255,0.06); }
-        .badge-circle {
-            width: 24px;
-            height: 24px;
-            background: #2A2A2A;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 12px;
-            color: white;
-        }
-        .bal-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 10px 0 25px;
-        }
-        .total-bal { 
-            font-size: 48px; 
-            font-weight: 800; 
-            letter-spacing: -1px; 
-            margin-bottom: 4px;
-        }
-        .chg-row { display: flex; align-items: center; gap: 8px; font-size: 17px; font-weight: 600; }
-        .pct-badge {
-            padding: 2px 8px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: bold;
-            background: rgba(255, 77, 77, 0.15);
-            color: var(--down-color);
-        }
-        .pct-badge.up { background: rgba(0, 255, 163, 0.15); color: var(--up-color); }
-
-        .actions-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            padding: 0 16px;
-            margin-bottom: 24px;
-        }
-        .action-btn {
-            aspect-ratio: 1;
-            background: #1C1C1E;
-            border-radius: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            color: var(--text-zinc-400);
-            cursor: pointer;
-        }
-        .action-btn:hover { background: #252528; }
-
-        .banner-row {
-            margin: 0 16px 16px;
-            background: #1C1C1E;
-            border-radius: 18px;
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            position: relative;
-            border: 1px solid rgba(255,255,255,0.03);
-        }
-        .banner-icon { width: 44px; height: 44px; border-radius: 10px; shrink: 0; }
-        .banner-text { font-size: 14px; font-weight: 700; line-height: 1.4; flex: 1; }
-        .banner-close { position: absolute; top: 8px; right: 12px; color: var(--text-zinc-500); cursor: pointer; }
-
-        .token-row {
-            margin: 0 16px;
-            background: #1C1C1E;
-            border-radius: 20px;
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid rgba(255,255,255,0.03);
-            cursor: pointer;
-        }
-        .token-info { display: flex; align-items: center; gap: 12px; }
-        .token-icon { width: 42px; height: 42px; border-radius: 50%; background: black; display: flex; align-items: center; justify-content: center; }
-        .token-vals { text-align: right; display: flex; flex-direction: column; }
-        
-        .manage-tokens {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 24px;
-            padding: 10px;
-            cursor: pointer;
-            opacity: 0.6;
-        }
-        .manage-tokens span { font-weight: bold; color: var(--text-zinc-500); font-size: 15px; }
-
-        /* Bottom Nav */
-        nav {
-            height: 72px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            background: #0F0F0F;
-            shrink: 0;
-            padding-bottom: 8px;
-        }
-        .nav-item { 
-            flex: 1;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer; 
-            color: #3F3F46; 
-            position: relative;
-        }
+        header { height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+        .account-badge { display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 6px 10px; border-radius: 20px; background: rgba(255,255,255,0.03); }
+        .total-bal { font-size: 48px; font-weight: 800; letter-spacing: -1px; text-align: center; }
+        .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 0 16px; margin: 24px 0; }
+        .action-btn { aspect-ratio: 1; background: #1C1C1E; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: bold; color: var(--text-zinc-400); cursor: pointer; }
+        nav { height: 72px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-around; align-items: center; background: #0F0F0F; }
+        .nav-item { flex: 1; height: 100%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #3F3F46; }
         .nav-item.active { color: #AB9FF2; }
-        .nav-item.active::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 20%;
-            right: 20%;
-            height: 2px;
-            background: #AB9FF2;
-            border-radius: 2px;
-        }
-
-        /* Editor & Import Screen Form */
-        .content-scroll {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 20px 24px;
-        }
-        .field-group { margin-bottom: 20px; }
-        .field-group label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-zinc-500);
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            letter-spacing: 0.8px;
-        }
-        .field-group input, .field-group textarea, .field-group select {
-            width: 100%;
-            background: var(--input-bg);
-            border: 1px solid #1A1A1A;
-            border-radius: 12px;
-            padding: 14px;
-            color: white;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        .field-group input:focus, .field-group textarea:focus { border-color: #333; outline: none; }
-        .primary-btn {
-            width: 100%;
-            height: 52px;
-            background: var(--accent);
-            color: black;
-            border: none;
-            border-radius: 14px;
-            font-weight: 800;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        .primary-btn:active { transform: scale(0.98); }
-
-        .profile-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0 30px;
-            position: relative;
-        }
-        .profile-circle {
-            width: 90px;
-            height: 90px;
-            background: #252528;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: white;
-            border: 2px solid #1A1A1A;
-        }
-        .profile-edit {
-            position: absolute;
-            bottom: 0;
-            right: calc(50% - 45px);
-            width: 28px;
-            height: 28px;
-            background: #2C2C2E;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--bg-color);
-        }
-
-        .addr-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding: 10px 0;
-        }
-        .addr-display span:first-child { color: white; font-weight: 700; font-size: 14px; }
-        .addr-display span:last-child { color: var(--text-zinc-500); font-family: monospace; font-size: 14px; }
-
-        .placeholder-tab {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-zinc-500);
-            font-size: 14px;
-        }
     </style>
 </head>
 <body>
-    <div id="main-layout" class="main-container">
-        <!-- Home tab layout is here -->
+    <div id="main-layout" style="flex:1;display:flex;flex-direction:column">
+        <div id="tab-home" class="tab-content active">
+            <div class="home-header">
+                <div class="account-badge" id="badge-account">
+                    <div class="badge-circle" id="disp-badgeCount">3</div>
+                    <span id="disp-homeName">111</span>
+                </div>
+            </div>
+            <div class="bal-section">
+                <div class="total-bal">$<span id="disp-bal">1.22</span></div>
+            </div>
+            <div class="actions-grid">
+                <div class="action-btn">Receive</div>
+                <div class="action-btn">Send</div>
+                <div class="action-btn">Swap</div>
+                <div class="action-btn">Buy</div>
+            </div>
+        </div>
+        <nav id="bottom-nav">
+            <div class="nav-item active" data-tab="tab-home">H</div>
+            <div class="nav-item" data-tab="tab-grid">G</div>
+            <div class="nav-item" data-tab="tab-swap">S</div>
+            <div class="nav-item" data-tab="tab-activity">A</div>
+            <div class="nav-item" data-tab="tab-search">Q</div>
+        </nav>
     </div>
     <script src="popup.js"></script>
 </body>
 </html>`,
   popupJs: `const DEFAULTS = {
-    homeName: "111",
-    bal: "1.22",
-    delta: "-0.0274",
-    pct: "-2.21",
-    tokAmt: "0.01 SOL",
-    tokUsd: "1.22",
-    tokChg: "-0.03",
-    badgeCount: "3",
-    addr: "7fXB...Hin7",
-    banner: "Meet Phantom Terminal, your new home for desktop trading"
+    homeName: "111", bal: "1.22", delta: "-0.0274", pct: "-2.21",
+    tokAmt: "0.01 SOL", tokUsd: "1.22", tokChg: "-0.03",
+    badgeCount: "3", addr: "7fXB...Hin7"
 };
-
 let currentData = { ...DEFAULTS };
-
 function updateUI() {
-    const data = currentData;
-    // UI logic here...
+    document.getElementById('disp-homeName').textContent = currentData.homeName;
+    document.getElementById('disp-bal').textContent = currentData.bal;
+    // ... UI Logic
 }
-
 window.onload = () => {
-    // Initialization logic here...
+    // ... Initialization logic
     updateUI();
 };`
 };
@@ -515,11 +204,8 @@ export default function ShowcasePage() {
                         </header>
                         <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2.5">
                           {[
-                            { title: "Create New Account", sub: "Add a new multi-chain account", icon: <Plus className="w-5 h-5" /> },
-                            { title: "Connect Hardware Wallet", sub: "Use your Ledger hardware wallet", icon: <Puzzle className="w-5 h-5" /> },
-                            { title: "Import Recovery Phrase", sub: "Import accounts from another wallet", icon: <File className="w-5 h-5" />, onClick: () => setScreen("s-editor") },
-                            { title: "Import Private Key", sub: "Import a single-chain account", icon: <ArrowDownToLine className="w-5 h-5" />, onClick: () => setScreen("s-import-pk") },
-                            { title: "Watch Address", sub: "Track any public wallet address", icon: <Eye className="w-5 h-5" /> },
+                            { title: "Import Recovery Phrase", sub: "Edit mock data values", icon: <File className="w-5 h-5" />, onClick: () => setScreen("s-editor") },
+                            { title: "Import Private Key", sub: "Add account to mockup", icon: <ArrowDownToLine className="w-5 h-5" />, onClick: () => setScreen("s-import-pk") },
                           ].map((item, i) => (
                             <button key={i} onClick={item.onClick} className="w-full bg-[#1C1C1E] p-4 rounded-[22px] flex items-center gap-4 text-left border border-white/5 active:scale-95 transition-all">
                               <div className="w-11 h-11 rounded-full bg-[#2C2C2E] flex items-center justify-center shrink-0">{item.icon}</div>
@@ -621,10 +307,7 @@ export default function ShowcasePage() {
                           </div>
                         </div>
                       )}
-                      {activeTab === "grid" && <div className="flex-1 flex items-center justify-center text-zinc-500 font-bold text-sm">Your Collectibles will appear here</div>}
-                      {activeTab === "swap" && <div className="flex-1 flex items-center justify-center text-zinc-500 font-bold text-sm">Swap assets instantly</div>}
-                      {activeTab === "activity" && <div className="flex-1 flex items-center justify-center text-zinc-500 font-bold text-sm">Recent activity will show up here</div>}
-                      {activeTab === "search" && <div className="flex-1 flex items-center justify-center text-zinc-500 font-bold text-sm">Search for tokens or dApps</div>}
+                      {activeTab !== "home" && <div className="flex-1 flex items-center justify-center text-zinc-500 font-bold text-sm">No data available in this mock section</div>}
                     </div>
 
                     <nav className="h-16 bg-[#0F0F0F] border-t border-white/5 flex items-center justify-around">
