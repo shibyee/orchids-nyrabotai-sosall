@@ -1025,14 +1025,18 @@ export default function ShowcasePage() {
                           </div>
                           {showBanner && (
                             <div className="bg-[#1C1C1E] rounded-2xl p-4 mb-4 flex items-center gap-4 relative border border-white/5">
-                              <div className="w-11 h-11 bg-zinc-800 rounded-lg flex items-center justify-center text-green-400"><MonitorIcon className="w-6 h-6"/></div>
+                              <div className="w-11 h-11 bg-zinc-800 rounded-lg flex items-center justify-center overflow-hidden">
+                                <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" className="w-7 h-7 object-contain" alt="Terminal" />
+                              </div>
                               <p className="text-[14px] font-bold leading-snug pr-4">{data.banner}</p>
                               <X onClick={() => setShowBanner(false)} className="absolute top-2 right-2 text-zinc-500 w-4 h-4 cursor-pointer" />
                             </div>
                           )}
                           <div className="bg-[#1C1C1E] rounded-[20px] p-4 flex items-center justify-between border border-white/5 active:bg-[#252528] transition-colors cursor-pointer" onClick={copyAddr}>
                             <div className="flex items-center gap-3">
-                              <div className="w-11 h-11 rounded-full bg-black flex items-center justify-center text-green-400 border border-white/5"><Zap className="w-6 h-6" /></div>
+                              <div className="w-11 h-11 rounded-full bg-black flex items-center justify-center overflow-hidden border border-white/5">
+                                <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/file-1766685022437.png" className="w-11 h-11 object-cover" alt="Solana" />
+                              </div>
                               <div className="flex flex-col"><span className="font-bold text-[17px]">{data.tokName}</span><span className="text-[13.5px] text-zinc-500 font-bold">{data.tokAmt}</span></div>
                             </div>
                             <div className="flex flex-col items-end"><span className="font-bold text-[17px]">${data.tokUsd}</span><span className={`text-[13.5px] font-bold ${data.tokChg.startsWith('-') ? "text-red-400" : "text-green-400"}`}>{data.tokChg.startsWith('-') ? "-$" : "+$"}{data.tokChg.replace('-', '')}</span></div>
