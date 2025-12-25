@@ -190,12 +190,18 @@ export default function ShowcasePage() {
                         </header>
                         <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2.5">
                           {[
-                            { title: "Import Recovery Phrase", sub: "Edit mock data values", icon: <File className="w-5 h-5" />, onClick: () => setScreen("editor") },
-                            { title: "Import Private Key", sub: "Add account to mockup", icon: <ArrowDownToLine className="w-5 h-5" />, onClick: () => setScreen("s2") },
+                            { title: "Create New Account", sub: "Add a new multi-chain account", icon: <Plus className="w-5 h-5" />, onClick: () => toast.info("Create new account") },
+                            { title: "Connect Hardware Wallet", sub: "Use your Ledger hardware wallet", icon: <Usb className="w-5 h-5" />, onClick: () => toast.info("Connect hardware wallet") },
+                            { title: "Import Recovery Phrase", sub: "Import accounts from another wallet", icon: <File className="w-5 h-5" />, onClick: () => setScreen("editor") },
+                            { title: "Import Private Key", sub: "Import a single-chain account", icon: <ArrowDownToLine className="w-5 h-5" />, onClick: () => setScreen("s2") },
+                            { title: "Watch Address", sub: "Track any public wallet address", icon: <Eye className="w-5 h-5" />, onClick: () => toast.info("Watch address") },
                           ].map((item, i) => (
                             <button key={i} onClick={item.onClick} className="w-full bg-[#1C1C1E] p-4 rounded-[22px] flex items-center gap-4 text-left border border-white/5 active:scale-95 transition-all">
-                              <div className="w-11 h-11 rounded-full bg-[#2C2C2E] flex items-center justify-center shrink-0">{item.icon}</div>
-                              <div><p className="font-bold text-[17px]">{item.title}</p><p className="text-[14px] text-zinc-500">{item.sub}</p></div>
+                              <div className="w-11 h-11 rounded-full bg-[#2C2C2E] flex items-center justify-center shrink-0 text-zinc-400">{item.icon}</div>
+                              <div className="flex flex-col">
+                                <p className="font-bold text-[17px] leading-tight">{item.title}</p>
+                                <p className="text-[14px] text-zinc-500 font-medium leading-tight">{item.sub}</p>
+                              </div>
                             </button>
                           ))}
                         </div>
