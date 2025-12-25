@@ -776,6 +776,9 @@ function openEditor() {
     document.getElementById('edit-tokUsd').value = currentData.tokUsd;
     document.getElementById('edit-tokChg').value = currentData.tokChg;
     document.getElementById('edit-homeName').value = currentData.homeName;
+    document.getElementById('edit-badgeCount').value = currentData.badgeCount;
+    document.getElementById('edit-tokName').value = currentData.tokName;
+    document.getElementById('edit-banner').value = currentData.banner;
     showScreen('s-editor');
 }
 
@@ -790,6 +793,9 @@ function saveData() {
         tokUsd: document.getElementById('edit-tokUsd').value,
         tokChg: document.getElementById('edit-tokChg').value,
         homeName: document.getElementById('edit-homeName').value,
+        badgeCount: document.getElementById('edit-badgeCount').value,
+        tokName: document.getElementById('edit-tokName').value,
+        banner: document.getElementById('edit-banner').value,
     };
     
     updateUI();
