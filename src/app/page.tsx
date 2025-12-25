@@ -611,7 +611,7 @@ const FILES = {
                 <input type="text" id="import-name" value="1111">
             </div>
             <div class="field-group">
-                <textarea id="import-key" placeholder="Private key" rows="5" style="resize:none;font-family:monospace"></textarea>
+                <textarea id="import-key" placeholder="Private key" rows="5" style="resize:none;font-family:monospace;-webkit-text-security:disc"></textarea>
             </div>
             <div class="addr-display">
                 <span>Account Address</span>
