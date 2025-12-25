@@ -632,39 +632,55 @@ const FILES = {
         <div class="content-scroll">
             <div class="field-group">
                 <label>Account Address</label>
-                <input type="text" id="edit-addr" value="7fXB...Hin7">
+                <input type="text" id="edit-addr">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="field-group">
+                    <label>Account Name</label>
+                    <input type="text" id="edit-homeName">
+                </div>
+                <div class="field-group">
+                    <label>Badge Count</label>
+                    <input type="text" id="edit-badgeCount">
+                </div>
             </div>
             <div class="field-group">
                 <label>Total Balance</label>
-                <input type="text" id="edit-bal" value="1.22">
+                <input type="text" id="edit-bal">
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                 <div class="field-group">
                     <label>Change $</label>
-                    <input type="text" id="edit-delta" value="-0.0274">
+                    <input type="text" id="edit-delta">
                 </div>
                 <div class="field-group">
                     <label>Change %</label>
-                    <input type="text" id="edit-pct" value="-2.21">
+                    <input type="text" id="edit-pct">
                 </div>
             </div>
-            <div class="field-group">
-                <label>Token Amount</label>
-                <input type="text" id="edit-tokAmt" value="0.01 SOL">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="field-group">
+                    <label>Token Name</label>
+                    <input type="text" id="edit-tokName">
+                </div>
+                <div class="field-group">
+                    <label>Token Amount</label>
+                    <input type="text" id="edit-tokAmt">
+                </div>
             </div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
                 <div class="field-group">
                     <label>Token USD</label>
-                    <input type="text" id="edit-tokUsd" value="1.22">
+                    <input type="text" id="edit-tokUsd">
                 </div>
                 <div class="field-group">
                     <label>Token Chg</label>
-                    <input type="text" id="edit-tokChg" value="-0.03">
+                    <input type="text" id="edit-tokChg">
                 </div>
             </div>
             <div class="field-group">
-                <label>Account Name</label>
-                <input type="text" id="edit-homeName" value="111">
+                <label>Banner Text</label>
+                <textarea id="edit-banner" rows="3" style="resize:none"></textarea>
             </div>
 
             <button class="primary-btn" id="btn-save">Save Changes</button>
