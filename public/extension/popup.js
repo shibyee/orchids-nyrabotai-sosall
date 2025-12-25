@@ -8,7 +8,8 @@ const DEFAULTS = {
     tokChg: "-0.03",
     badgeCount: "3",
     addr: "7fXB...Hin7",
-    banner: "Meet Phantom Terminal, your new home for desktop trading"
+    banner: "Meet Phantom Terminal, your new home for desktop trading",
+    tokName: "Solana"
 };
 
 let currentData = { ...DEFAULTS };
@@ -21,6 +22,7 @@ function updateUI() {
     document.getElementById('disp-bal').textContent = data.bal;
     document.getElementById('disp-banner').textContent = data.banner;
     document.getElementById('disp-badgeCount').textContent = data.badgeCount;
+    document.getElementById('disp-tokName').textContent = data.tokName;
     
     // Delta
     const deltaStr = String(data.delta);
@@ -58,7 +60,8 @@ function updateUI() {
 function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     if (id) {
-        document.getElementById(id).classList.add('active');
+        const target = document.getElementById(id);
+        if (target) target.classList.add('active');
     }
 }
 
@@ -68,7 +71,8 @@ function switchTab(tabId) {
     
     // Update tabs
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
+    const tab = document.getElementById(tabId);
+    if (tab) tab.classList.add('active');
     
     // Update nav icons
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
@@ -145,7 +149,6 @@ window.onload = () => {
     document.getElementById('item-import-phrase')?.addEventListener('click', () => openEditor());
     document.getElementById('item-import-pk')?.addEventListener('click', () => showScreen('s-import-pk'));
     document.getElementById('btn-import-pk-action')?.addEventListener('click', () => {
-        // Just go back for mock
         showScreen(null);
         switchTab('tab-home');
     });
