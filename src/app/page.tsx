@@ -30,7 +30,8 @@ import {
   Repeat,
   DollarSign,
   Maximize2,
-  QrCode
+  QrCode,
+  Usb
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
