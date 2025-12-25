@@ -827,8 +827,7 @@ window.onload = () => {
     document.getElementById('btn-save')?.addEventListener('click', () => saveData());
 
     updateUI();
-};\`
-};
+};`
 };
 
 export default function ShowcasePage() {
