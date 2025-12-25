@@ -469,7 +469,7 @@ const FILES = {
 
             <div class="banner-row" id="banner">
                 <div style="background:#2A2A2A;border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;shrink:0;overflow:hidden">
-                    <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" style="width:28px;height:28px;object-fit:contain" alt="Terminal">
+                    <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" style="width:34px;height:34px;object-fit:contain" alt="Terminal">
                 </div>
                 <div class="banner-text" id="disp-banner">Meet Phantom Terminal, your new home for desktop trading</div>
                 <div class="banner-close" id="banner-close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
