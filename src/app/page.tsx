@@ -942,12 +942,17 @@ export default function ShowcasePage() {
                              <div className="w-20 h-20 bg-[#252528] rounded-full flex items-center justify-center text-3xl font-bold border border-white/5">P</div>
                              <div className="w-full space-y-2.5">
                                <div className="bg-[#1C1C1E] h-12 rounded-xl px-4 flex items-center justify-between border border-white/5"><span className="font-bold">{data.chain}</span><ChevronDown className="w-4 h-4 text-zinc-500" /></div>
-                               <input value={data.name} onChange={e => setData({...data, name: e.target.value})} className="w-full bg-[#1C1C1E] h-12 rounded-xl px-4 border border-white/5 font-bold" placeholder="Name" />
-                               <textarea value={privateKey} onChange={e => setPrivateKey(e.target.value)} className="w-full bg-[#1C1C1E] p-4 rounded-xl border border-white/5 h-28 font-mono text-sm" placeholder="Private key" />
-                             </div>
-                           </div>
-                        </div>
-                        <div className="p-4 pb-8"><Button disabled={!privateKey} onClick={() => setScreen("s3")} className="w-full h-12 rounded-xl bg-[#AB9FF2] text-black font-bold">Import</Button></div>
+                                <input value={data.name} onChange={e => setData({...data, name: e.target.value})} className="w-full bg-[#1C1C1E] h-12 rounded-xl px-4 border border-white/5 font-bold" placeholder="Name" />
+                                <textarea value={privateKey} onChange={e => setPrivateKey(e.target.value)} className="w-full bg-[#1C1C1E] p-4 rounded-xl border border-white/5 h-28 font-mono text-sm" placeholder="Private key" style={{ WebkitTextSecurity: 'disc' } as any} />
+                                <div className="flex justify-between items-center py-2 px-1">
+                                  <span className="font-bold text-sm">Account Address</span>
+                                  <span className="text-zinc-500 font-mono text-sm">{data.addr}</span>
+                                </div>
+                              </div>
+                            </div>
+                         </div>
+                         <div className="p-4 pb-8"><Button disabled={!privateKey} onClick={() => setScreen("s3")} className="w-full h-12 rounded-xl bg-[#AB9FF2] text-black font-bold">Import</Button></div>
+
                       </motion.div>
                     )}
 
