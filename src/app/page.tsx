@@ -613,7 +613,7 @@ const FILES = {
             <div class="field-group">
                 <textarea id="import-key" placeholder="Private key" rows="5" style="resize:none;font-family:monospace;-webkit-text-security:disc"></textarea>
             </div>
-            <div class="addr-display">
+            <div class="addr-display" id="import-addr-row" style="display:none">
                 <span>Account Address</span>
                 <span id="import-addr-disp">7fXB...Hin7</span>
             </div>
