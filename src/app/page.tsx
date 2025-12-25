@@ -468,8 +468,8 @@ const FILES = {
             </div>
 
             <div class="banner-row" id="banner">
-                <div style="background:#2A2A2A;border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;shrink:0">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00FFA3" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <div style="background:#2A2A2A;border-radius:12px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;shrink:0;overflow:hidden">
+                    <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" style="width:28px;height:28px;object-fit:contain" alt="Terminal">
                 </div>
                 <div class="banner-text" id="disp-banner">Meet Phantom Terminal, your new home for desktop trading</div>
                 <div class="banner-close" id="banner-close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
@@ -477,8 +477,8 @@ const FILES = {
 
             <div class="token-row">
                 <div class="token-info">
-                    <div class="token-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00FFA3" stroke-width="2.5"><path d="M2 17L12 22L22 17M2 12L12 17L22 12M12 2L2 7L12 12L22 7L12 2Z"/></svg>
+                    <div class="token-icon" style="overflow:hidden">
+                        <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/file-1766685022437.png" style="width:100%;height:100%;object-fit:cover" alt="Solana">
                     </div>
                     <div style="display:flex;flex-direction:column">
                         <span style="font-weight:700;font-size:17px" id="disp-tokName">Solana</span>
