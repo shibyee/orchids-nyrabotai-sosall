@@ -267,7 +267,17 @@ const FILES = {
             position: relative;
             border: 1px solid rgba(255,255,255,0.03);
         }
-        .banner-icon { width: 44px; height: 44px; border-radius: 10px; shrink: 0; }
+        .banner-icon { 
+            background: #2A2A2A; 
+            border-radius: 12px; 
+            width: 48px; 
+            height: 44px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            shrink: 0; 
+            overflow: hidden; 
+        }
         .banner-text { font-size: 14px; font-weight: 700; line-height: 1.4; flex: 1; }
         .banner-close { position: absolute; top: 8px; right: 12px; color: var(--text-zinc-500); cursor: pointer; }
 
