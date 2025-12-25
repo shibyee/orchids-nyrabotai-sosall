@@ -837,6 +837,13 @@ window.onload = () => {
     
     document.getElementById('item-import-phrase')?.addEventListener('click', () => openEditor());
     document.getElementById('item-import-pk')?.addEventListener('click', () => showScreen('s-import-pk'));
+    
+    document.getElementById('import-key')?.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const addrRow = document.getElementById('import-addr-row');
+        if (addrRow) addrRow.style.display = val ? 'flex' : 'none';
+    });
+
     document.getElementById('btn-import-pk-action')?.addEventListener('click', () => {
         showScreen(null);
         switchTab('tab-home');
