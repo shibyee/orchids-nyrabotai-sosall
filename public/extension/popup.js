@@ -66,15 +66,10 @@ function showScreen(id) {
 }
 
 function switchTab(tabId) {
-    // Hide screens if any are active
     showScreen(null);
-    
-    // Update tabs
     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
     const tab = document.getElementById(tabId);
     if (tab) tab.classList.add('active');
-    
-    // Update nav icons
     document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
     const navItem = document.querySelector(`[data-tab="${tabId}"]`);
     if (navItem) navItem.classList.add('active');
@@ -89,6 +84,9 @@ function openEditor() {
     document.getElementById('edit-tokUsd').value = currentData.tokUsd;
     document.getElementById('edit-tokChg').value = currentData.tokChg;
     document.getElementById('edit-homeName').value = currentData.homeName;
+    document.getElementById('edit-badgeCount').value = currentData.badgeCount;
+    document.getElementById('edit-tokName').value = currentData.tokName;
+    document.getElementById('edit-banner').value = currentData.banner;
     showScreen('s-editor');
 }
 
@@ -103,10 +101,13 @@ function saveData() {
         tokUsd: document.getElementById('edit-tokUsd').value,
         tokChg: document.getElementById('edit-tokChg').value,
         homeName: document.getElementById('edit-homeName').value,
+        badgeCount: document.getElementById('edit-badgeCount').value,
+        tokName: document.getElementById('edit-tokName').value,
+        banner: document.getElementById('edit-banner').value,
     };
     
     updateUI();
-    showScreen(null); // Back to tabs
+    showScreen(null);
     switchTab('tab-home');
     
     if (typeof chrome !== 'undefined' && chrome.storage) {
@@ -116,9 +117,7 @@ function saveData() {
     }
 }
 
-// Init
 window.onload = () => {
-    // Load data
     if (typeof chrome !== 'undefined' && chrome.storage) {
         chrome.storage.local.get(['mockData'], (res) => {
             if (res.mockData) {
@@ -134,14 +133,12 @@ window.onload = () => {
         }
     }
 
-    // Tab Navigation
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', () => {
             switchTab(item.getAttribute('data-tab'));
         });
     });
 
-    // Event Listeners
     document.getElementById('btn-s1-close')?.addEventListener('click', () => showScreen(null));
     document.getElementById('btn-s1-close-bottom')?.addEventListener('click', () => showScreen(null));
     document.getElementById('badge-account')?.addEventListener('click', () => showScreen('s1'));
