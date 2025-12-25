@@ -478,7 +478,7 @@ const FILES = {
             </div>
 
             <div class="banner-row" id="banner">
-                <div style="background:#2A2A2A;border-radius:12px;width:48px;height:44px;display:flex;align-items:center;justify-content:center;shrink:0;overflow:hidden">
+                <div class="banner-icon">
                     <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/b3054992e11f725109af4ccf86f775f9d3d505e0-40x40-1766684995290.png" style="width:42px;height:34px;object-fit:contain" alt="Terminal">
                 </div>
                 <div class="banner-text" id="disp-banner">Meet Phantom Terminal, your new home for desktop trading</div>
